@@ -9,5 +9,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'react/jsx-props-no-spreading': { custom: 'ignore' },
   },
 };

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-function AuthPage({ onAuth }) {
+import authenticateUser from '../requests';
+
+const AuthPage = ({ onAuth }) => {
   const [username, setUsername] = useState('');
 
   const handleNameChange = (event) => {
@@ -9,6 +11,10 @@ function AuthPage({ onAuth }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    authenticateUser(username)
+      .then((res) => onAuth({ ...res.data, secret: username }))
+      .catch((err) => console.log(err));
+
     onAuth({ username, secret: username });
   };
 
